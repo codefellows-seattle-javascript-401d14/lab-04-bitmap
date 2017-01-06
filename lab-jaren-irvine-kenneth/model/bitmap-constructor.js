@@ -2,6 +2,7 @@
 // data is the bitmap buffer data
 module.exports = function(data) {
   this.buffer = data;
+  this.id = data.readUInt32LE(0);
   this.format = data.readUInt32LE(28);
   this.width = data.readUInt32LE(18);
   this.height = data.readUInt32LE(22);

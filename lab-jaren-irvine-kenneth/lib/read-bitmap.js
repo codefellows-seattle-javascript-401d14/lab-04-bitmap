@@ -9,8 +9,6 @@ module.exports = function(inputFilePath, callback){
     // data is the buffer
     // console.log(data);
     var result = new Buffer(data);
-    console.log(result);
-
     callback(null, result);
   });
 };
