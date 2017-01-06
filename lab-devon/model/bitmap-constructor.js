@@ -2,10 +2,8 @@
 
 module.exports = function(data){
   this.buf = data;
-  this.numOfPixels = data.readUIntLE(28);
-  this.pixalArray = data.readUIntLE(14);
-  this.width = data.readUIntLE(18);
-  this.red = data.readUIntLE(54);
-  this.green = data.readUIntLE(63);
-  this.blue = data.readUIntLE(66);
+  this.fileSize = data.readUInt32LE(2);
+  console.log(this.fileSize);
+  this.offset = data.readUInt32LE(10);
+  this.colorArray = data.slice(54,this.offset);
 };
