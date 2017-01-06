@@ -10,8 +10,9 @@ const main = module.exports = function(){
     if (err) return console.error(err);
     console.log(bitMap);
     /// transform
-    
+    bitMap.random();
     return writeFile('./outputs/output.bmp', bitMap, function(err) {
+      console.log('did we hit here?');
       if (err) return console.error(err);
     });
   });

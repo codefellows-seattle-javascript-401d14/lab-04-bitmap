@@ -12,4 +12,15 @@ const BitMap = module.exports = function(data) {
   console.log(data);
 };
 
-BitMap.prototype.random
+BitMap.prototype.random = function(){
+//   console.log(this.colorArray);
+//   this.colorArray.fill(0);
+// };
+  for(var i = 0; i < this.colorArray.length; i += 4) {
+    this.colorArray[i] = Math.floor(Math.random() * 255);
+    this.colorArray[i + 1] = Math.floor(Math.random() * 255);
+    this.colorArray[i + 2] = Math.floor(Math.random() * 255);
+  }
+};
+
+//BitMap.prototype.random();
