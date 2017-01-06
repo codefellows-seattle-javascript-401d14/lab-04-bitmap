@@ -1,12 +1,16 @@
 'use strict';
 
 const fs = require('fs');
+const Buffer = require('../model/bitmap-constructor.js');
 
 module.exports = function(inputFilePath, callback){
-  var result = [];
   fs.readFile(inputFilePath, (err, data) => {
     if (err) return callback(err);
-    result.push(data);
+    // data is the buffer
+    // console.log(data);
+    var result = new Buffer(data);
+    console.log(result);
+
     callback(null, result);
   });
 };
