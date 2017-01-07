@@ -5,17 +5,43 @@ const writeBitmap = require('../lib/write-bitmap.js');
 const readBitmap = require('../lib/read-bitmap.js');
 
 describe('testing write bitmap module', function() {
-  describe('testing with valid input', function() {
-    let outputFileName = `${__dirname}/../outputs/bitmap-test-out.bmp`;
-    let inputFileName = `${__dirname}/../../assets/bitmap.bmp`;
-    before(function(done){
-      readBitmap(inputFileName, function(err, bitmap){
+  let outputFileName = `${__dirname}/../outputs/bitmap-test-out.bmp`;
+  let inputFileName = `${__dirname}/../../assets/bitmap.bmp`;
+  describe('testing with valid input', () => {
+    before((done) => {
+      readBitmap(inputFileName, (err, bitmap) => {
         if (err) done(err);
-        
+        this.bitmap = bitmap;
+        done();
+      });
+    });
 
+    // after((done) => {
+    //
+    // });
+
+    it('should write a bitmap-test file to outputs', (done) => {
+      writeBitmap(outputFileName, this.bitmap, (err, data) => {
+        if (err) done(err);
+        expect(this.bitmap).to.equal(data);
+        done();
+      });
+    });
+  });
+  describe('testing with invalid input', () => {
+    before((done) => {
+      readBitmap(inputFileName, (err, bitmap) => {
+        if (err) done(err);
+        this.bitmap = bitmap;
+        done();
+      });
+    });
+    it('should return an error', (done) => {
+      writeBitmap(42, this.bitmap, (err, data) => {
+        expect(!!err).to.equal(true);
+        console.log(data);
+        done();
       });
     });
   });
 });
-
-// writeBitmap(inputFileName, data, function(){
