@@ -9,13 +9,12 @@ const Bitmap = module.exports = function(buffer){
   this.pixelArrayOffset = buffer.readUInt32LE(10);
 
   // DIB header
-  this.size = buffer.readUInt32LE(14);
   this.width = buffer.readUInt32LE(18);
   this.height = buffer.readUInt32LE(22);
   this.colorPlanes = buffer.readUInt16LE(26);
   this.depth = buffer.readUInt16LE(28);
   this.horizontalResolution = buffer.readUInt32LE(38);
-  this.verticalsResolution = buffer.readUInt32LE(42);
+  this.verticalResolution = buffer.readUInt32LE(42);
   this.numColors = buffer.readUInt32LE(46);
   this.importantColors = buffer.readUInt32LE(50);
 
