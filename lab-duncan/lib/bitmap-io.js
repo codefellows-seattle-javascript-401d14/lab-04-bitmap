@@ -3,7 +3,6 @@
 const fs = require('fs');
 const Bitmap = require('../model/bitmap.js');
 
-
 const bitmapIO = module.exports = {};
 
 bitmapIO.readBitmap = function(path){
@@ -26,5 +25,3 @@ bitmapIO.writeBitmap = function(path, bitmap){
     });
   });
 }
-
-
