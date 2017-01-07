@@ -18,7 +18,7 @@ bitmapIO.readBitmap(infile)
 .then(bitmap => {
   // check if user requested transform exits
   if(!bitmap[transform])
-    return Promise.reject('tansform not available');
+    return Promise.reject(new Error(`tansform ${transform} not available`));
 
   // do the transform
   return bitmap[transform](arg) // if arg is not set
