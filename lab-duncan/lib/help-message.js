@@ -1,10 +1,11 @@
 'use strict';
 
 module.exports = `USAGE ERROR:
-  try: node index.js /infile/path.bmp /outfile/path.bmp tranform
+  try: node index.js /infile/path.bmp /outfile/path.bmp tranform *amount
+       *amount must be a number and is only used on some transform 
 
   transforms:
     invert
-    lighten
-    darken
-    random`;
+    bandw
+    lighten amount (default  10)
+    darken amount (default  10)`

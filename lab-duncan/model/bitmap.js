@@ -18,9 +18,65 @@ const Bitmap = module.exports = function(buffer){
   this.numColors = buffer.readUInt32LE(46);
   this.importantColors = buffer.readUInt32LE(50);
 
-  // colorPallet
+  // color palet
   this.colorPalletBuffer = buffer.slice(54, this.pixelArrayOffset);
 
-  // pixelArray
+  // pixel data
   this.pixelBuffer = buffer.slice(this.pixelArrayOffset);
+}
+
+Bitmap.prototype.blackout = function(){
+  this.colorPalletBuffer.fill(0);
+  return Promise.resolve(this);
+}
+
+Bitmap.prototype.invert = function(){
+  for(let i=0; i<this.colorPalletBuffer.length; i++){
+    this.colorPalletBuffer[i] = 255 - this.colorPalletBuffer[i];
+  }
+
+  return Promise.resolve(this);
+}
+
+Bitmap.prototype.bandw = function(){
+  let colors = this.colorPalletBuffer;
+  for(let i=0; i<colors.length; i+=4){
+    let average = Math.floor((colors[i] + colors[i+1] + colors[i+2]) / 3)
+    colors[i] = average;
+    colors[i+1] = average;
+    colors[i+2] = average;
+  }
+  return Promise.resolve(this);
+}
+
+Bitmap.prototype.lighten = function(amount=10){
+  amount = Number(amount);
+  if(isNaN(amount)) 
+    return Promise.reject(new Error('lighten amount must be a number'));
+
+  let colors = this.colorPalletBuffer;
+  // add amount to orignal numbber but dont exceed 255
+  for(let i=0; i<colors.length; i+=4){
+    colors[i] = (colors[i] + amount) > 255 ? 255 : colors[i] + amount
+    colors[i+1] = (colors[i+1] + amount) > 255 ? 255 : colors[i+1] + amount
+    colors[i+2] = (colors[i+2] + amount) > 255 ? 255 : colors[i+2] + amount
+  }
+  
+  return Promise.resolve(this);
+}
+
+Bitmap.prototype.darken = function(amount=10){
+  amount = Number(amount);
+  if(isNaN(amount)) 
+    return Promise.reject(new Error('daken amount must be a number'));
+
+  let colors = this.colorPalletBuffer;
+  // subtract amount from orignal numbber but dont go under 0
+  for(let i=0; i<colors.length; i+=4){
+    colors[i] = (colors[i] + amount) < 0 ? 0: colors[i] - amount 
+    colors[i+1] = (colors[i+1] + amount) < 0 ? 0: colors[i+1] - amount 
+    colors[i+2] = (colors[i+2] + amount) < 0 ? 0: colors[i+2] - amount 
+  }
+
+  return Promise.resolve(this)
 }
