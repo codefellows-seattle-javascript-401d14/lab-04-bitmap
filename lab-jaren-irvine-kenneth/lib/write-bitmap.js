@@ -6,7 +6,6 @@ const fs = require('fs');
 module.exports = function(outputFilePath, bitmap, callback){
   fs.writeFile(outputFilePath, bitmap.buffer, (err) => {
     if (err) return callback(err);
-
     callback(null, bitmap);
   });
 };

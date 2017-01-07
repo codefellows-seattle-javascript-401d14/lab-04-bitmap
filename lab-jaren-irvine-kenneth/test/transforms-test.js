@@ -6,7 +6,7 @@ const readBitmap = require('../lib/read-bitmap.js');
 const transformer = require('../lib/transforms.js');
 
 describe('testing transform bitmap module', function() {
-  let outputFileName = `${__dirname}/../outputs/bitmap-test-out.bmp`;
+  let outputFileName = `${__dirname}/../outputs/randomcolors-valid-test.bmp`;
   let inputFileName = `${__dirname}/../../assets/bitmap.bmp`;
   describe('testing with valid input', () => {
     before((done) => {
@@ -16,20 +16,24 @@ describe('testing transform bitmap module', function() {
         done();
       });
     });
-
     after((done) => {
-      writeBitmap(outputFileName, this.bitmap, (err, data) => {
+      writeBitmap(outputFileName, this.bitmap, (err) => {
         if (err) done(err);
-        this.data = data;
         done();
       });
     });
-
-    it('should transform file into a new bitmap', (done) => {
-      transformer.randomColors(this.bitmap);
-      done();
+    it ('should have the colorArray property', () => {
+      expect(this.bitmap).to.have.ownProperty('colorArray');
+    });
+    it('should transform file into a new bitmap by randomizing the colorArray', () => {
+//==>>  .change asserts that a function changes the object property
+//==>>  Although the colorArray does change, this test doesn't think so. WHYYY?
+      expect(transformer.randomColors.bind(transformer.randomColors, this.bitmap)).to.change(this.bitmap, 'colorArray');
+      /* ^^ expect wants a function, not the result of invoking it, so calling
+        bind on itself with this.bitmap as its param should work? */
     });
   });
+
   describe('testing with invalid input', () => {
     before((done) => {
       readBitmap(inputFileName, (err, bitmap) => {
@@ -38,19 +42,8 @@ describe('testing transform bitmap module', function() {
         done();
       });
     });
-    after((done) => {
-      writeBitmap(outputFileName, this.bitmap, (err, data) => {
-        if (err) done(err);
-        this.data = data;
-        done();
-      });
-    });
-    it('should return an error', (done) => {
-      transformer.randomColors(42, () => {
-        expect(this.bitmap).to.equal(this.data);
-        
-        done();
-      });
+    it('should throw an error', () => {
+      expect(transformer.randomColors).to.throw('expected a bitmap buffer');
     });
   });
 });
