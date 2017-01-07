@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs');
-//const Buffer = require('../model/bitmap-constructor.js');
+//writing newly transformed file to a new output folder
 
 module.exports = function(outputFilePath, bitmap, callback){
   fs.writeFile(outputFilePath, bitmap.buffer, (err) => {

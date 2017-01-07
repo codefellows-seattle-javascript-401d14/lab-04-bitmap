@@ -1,6 +1,7 @@
 'use strict';
 
-
+//transformer that randomizes each individual color
+//i = blue, i+1 = green, i+2 = red
 const transformer = module.exports = {};
 
 transformer.randomColors = function(bitmap) {
