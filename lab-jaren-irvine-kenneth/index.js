@@ -10,8 +10,9 @@ const main = module.exports = function() {
     if (err) return console.error(err);
     // this is where we do our transform
     // console.log(bitmap.id);
-    transformer.randomColors(bitmap);
-    transformer.greyScale(bitmap);
+    //transformer.randomColors(bitmap);
+    //transformer.greyScale(bitmap);
+    transformer.oppositeColors(bitmap);
     //follow up with a write to the new ouput folder
     writeBitmap('outputs/main-output.bmp', bitmap, function(err){
       if (err) return console.error(err);

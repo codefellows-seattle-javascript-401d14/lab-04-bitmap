@@ -15,6 +15,7 @@ transformer.randomColors = function(bitmap) {
   }
 };
 
+/* Transforms the bitmap to grey scale by average the rgb values of each byte */
 transformer.greyScale = function(bitmap) {
   if (typeof bitmap !== 'object' || bitmap.id === undefined)
     throw new Error('expected a bitmap buffer');
@@ -22,5 +23,18 @@ transformer.greyScale = function(bitmap) {
   for (let i = 0; i < colors.length; i += 4) {
     let avg = (colors[i] + colors[i + 2] + colors[i + 3]) / 3;
     colors[i] = colors[i + 1] = colors[i + 2] = avg;
+  }
+};
+
+/* Transforms each byte in the colorArray to its complementary-ish color */
+transformer.oppositeColors = function(bitmap) {
+  if (typeof bitmap !== 'object' || bitmap.id === undefined)
+    throw new Error('expected a bitmap buffer');
+  let colors = bitmap.colorArray;
+  // to really be complimentary we'd have to change gamma and other stuff
+  for (let i = 0; i < colors.length; i += 4) {
+    colors[i] = 255 - colors[i];
+    colors[i + 1] = 255 - colors[i + 2];
+    colors[i + 2] = 255 - colors[i + 3];
   }
 };
