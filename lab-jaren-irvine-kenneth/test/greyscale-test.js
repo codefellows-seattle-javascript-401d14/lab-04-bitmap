@@ -5,8 +5,8 @@ const writeBitmap = require('../lib/write-bitmap.js');
 const readBitmap = require('../lib/read-bitmap.js');
 const transformer = require('../lib/transforms.js');
 
-describe('testing transform bitmap module', function() {
-  let outputFileName = `${__dirname}/../outputs/randomcolors-valid-test.bmp`;
+describe('testing greyscale transform', function() {
+  let outputFileName = `${__dirname}/../outputs/greyscale-test.bmp`;
   let inputFileName = `${__dirname}/../../assets/bitmap.bmp`;
   describe('testing with valid input', () => {
     before((done) => {
@@ -28,7 +28,7 @@ describe('testing transform bitmap module', function() {
     it('should transform file into a new bitmap by randomizing the colorArray', () => {
 //==>>  .change asserts that a function changes the object property
 //==>>  Although the colorArray does change, this test doesn't think so. WHYYY?
-      expect(transformer.randomColors.bind(transformer.randomColors, this.bitmap)).to.change(this.bitmap, 'colorArray');
+      expect(transformer.greyScale.bind(transformer.greyScale, this.bitmap)).to.change(this.bitmap, 'colorArray');
       /* ^^ expect wants a function, not the result of invoking it, so calling
         bind on itself with this.bitmap as its param should work? */
     });
@@ -43,7 +43,7 @@ describe('testing transform bitmap module', function() {
       });
     });
     it('should throw an error', () => {
-      expect(transformer.randomColors).to.throw('expected a bitmap buffer');
+      expect(transformer.greyScale).to.throw('expected a bitmap buffer');
     });
   });
 });
