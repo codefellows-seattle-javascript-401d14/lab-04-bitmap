@@ -12,7 +12,7 @@ const main = module.exports = function() {
     // console.log(bitmap.id);
     //transformer.randomColors(bitmap);
     //transformer.greyScale(bitmap);
-    transformer.oppositeColors(bitmap);
+    transformer.invertColors(bitmap);
     //follow up with a write to the new ouput folder
     writeBitmap('outputs/main-output.bmp', bitmap, function(err){
       if (err) return console.error(err);

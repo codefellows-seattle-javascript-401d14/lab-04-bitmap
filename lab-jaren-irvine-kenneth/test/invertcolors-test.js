@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const readBitmap = require('../lib/read-bitmap.js');
 const transformer = require('../lib/transforms.js');
 
-describe('testing greyscale transform', function() {
+describe('testing invertcolors transform', function() {
   let inputFileName = `${__dirname}/../../assets/bitmap.bmp`;
   describe('testing with valid input', () => {
     var beforeColors = [];
@@ -19,12 +19,14 @@ describe('testing greyscale transform', function() {
         done();
       });
     });
-    it('should assign the rgb average to red green and blue', () => {
-      transformer.greyScale(this.bitmap);
+    it('should subtract each rgb value from 255 to get the invert', () => {
+      transformer.invertColors(this.bitmap);
       afterColors[0] = this.bitmap.colorArray[4];
       afterColors[1] = this.bitmap.colorArray[5];
       afterColors[2] = this.bitmap.colorArray[6];
-      expect(Math.floor((beforeColors[0]+beforeColors[1]+beforeColors[2])/3)).to.equal(afterColors[0]);
+      expect(afterColors[0]).to.equal(255 - beforeColors[0]);
+      expect(afterColors[1]).to.equal(255 - beforeColors[1]);
+      expect(afterColors[2]).to.equal(255 - beforeColors[2]);
     });
   });
 
@@ -37,7 +39,7 @@ describe('testing greyscale transform', function() {
       });
     });
     it('should throw an error', () => {
-      expect(transformer.greyScale).to.throw('expected a bitmap buffer');
+      expect(transformer.invertColors).to.throw('expected a bitmap buffer');
     });
   });
 });

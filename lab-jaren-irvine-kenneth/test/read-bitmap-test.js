@@ -5,7 +5,7 @@ const readBitmap = require('../lib/read-bitmap.js');
 
 
 //Test checking constructor and read modules
-describe('testing constructor module', function() {
+describe('testing read module integrating bitmap constructor', function() {
   describe('testing with valid input', function() {
     let id = 'BM';
     let fileName = `${__dirname}/../../assets/bitmap.bmp`;
