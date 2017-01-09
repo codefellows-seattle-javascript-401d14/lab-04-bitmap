@@ -21,13 +21,13 @@ transformer.greyScale = function(bitmap) {
     throw new Error('expected a bitmap buffer');
   let colors = bitmap.colorArray;
   for (let i = 0; i < colors.length; i += 4) {
-    let avg = (colors[i] + colors[i + 2] + colors[i + 3]) / 3;
-    colors[i] = colors[i + 1] = colors[i + 2] = avg;
+    let avg = (colors[i] + colors[i + 1] + colors[i + 2]) / 3;
+    colors[i] = colors[i + 1] = colors[i + 2] = Math.floor(avg);
   }
 };
 
 /* Transforms each byte in the colorArray to its complementary-ish color */
-transformer.oppositeColors = function(bitmap) {
+transformer.invertColors = function(bitmap) {
   if (typeof bitmap !== 'object' || bitmap.id === undefined)
     throw new Error('expected a bitmap buffer');
   let colors = bitmap.colorArray;
