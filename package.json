@@ -1,0 +1,23 @@
+{
+  "name": "lab-04-bitmap",
+  "version": "0.0.1",
+  "description": "gnoevil lab-04",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnoevil/lab-04-bitmap.git"
+  },
+  "author": "geno.guerrero@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gnoevil/lab-04-bitmap/issues"
+  },
+  "homepage": "https://github.com/gnoevil/lab-04-bitmap#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
