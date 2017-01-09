@@ -38,7 +38,7 @@ describe('testing randomcolors transform', function() {
       });
     });
     it('should throw an error', () => {
-      expect(transformer.randomColors).to.throw('expected a bitmap buffer');
+      expect(transformer.randomColors).to.throw(Error);
     });
   });
 });

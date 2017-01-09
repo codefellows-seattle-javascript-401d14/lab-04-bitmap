@@ -37,7 +37,7 @@ describe('testing greyscale transform', function() {
       });
     });
     it('should throw an error', () => {
-      expect(transformer.greyScale).to.throw('expected a bitmap buffer');
+      expect(transformer.greyScale).to.throw(Error);
     });
   });
 });

@@ -1,23 +1,23 @@
 'use strict';
 
 const transformer = module.exports = {};
-
+const Bitmap = require('../model/bitmap-constructor.js');
 //transformer that randomizes each individual color
 //i = blue, i+1 = green, i+2 = red
 transformer.randomColors = function(bitmap) {
   // if block checks for a bitmap buffer object
-  if (typeof bitmap !== 'object' || bitmap.id === undefined)
+  if (!bitmap instanceof Bitmap)
     throw new Error('expected a bitmap buffer');
   for (var i = 0; i < bitmap.colorArray.length; i += 4) {
-    bitmap.colorArray[i] = Math.floor(Math.random() * 255) + 1;
-    bitmap.colorArray[i + 1] = Math.floor(Math.random() * 255) + 1;
-    bitmap.colorArray[i + 2] = Math.floor(Math.random() * 255) + 1;
+    bitmap.colorArray[i] = Math.floor(Math.random() * 255) + 1; // blue
+    bitmap.colorArray[i + 1] = Math.floor(Math.random() * 255) + 1; // green
+    bitmap.colorArray[i + 2] = Math.floor(Math.random() * 255) + 1; // red
   }
 };
 
 /* Transforms the bitmap to grey scale by averaging the rgb values of each color */
 transformer.greyScale = function(bitmap) {
-  if (typeof bitmap !== 'object' || bitmap.id === undefined)
+  if (!bitmap instanceof Bitmap)
     throw new Error('expected a bitmap buffer');
   let colors = bitmap.colorArray;
   for (let i = 0; i < colors.length; i += 4) {
@@ -28,7 +28,7 @@ transformer.greyScale = function(bitmap) {
 
 /* Transforms the bitmap to its inverted version */
 transformer.invertColors = function(bitmap) {
-  if (typeof bitmap !== 'object' || bitmap.id === undefined)
+  if (!bitmap instanceof Bitmap)
     throw new Error('expected a bitmap buffer');
   let colors = bitmap.colorArray;
   for (let i = 0; i < colors.length; i += 4) {

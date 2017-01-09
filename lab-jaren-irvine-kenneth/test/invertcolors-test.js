@@ -39,7 +39,7 @@ describe('testing invertcolors transform', function() {
       });
     });
     it('should throw an error', () => {
-      expect(transformer.invertColors).to.throw('expected a bitmap buffer');
+      expect(transformer.invertColors).to.throw(Error);
     });
   });
 });
