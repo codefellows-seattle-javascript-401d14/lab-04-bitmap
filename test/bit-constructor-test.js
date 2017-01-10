@@ -1,7 +1,7 @@
 'use strict';
 
 const expect = require('chai').expect;
-const BitConst= require('../lib/bit-read-constructor.js');
+const BitConst= require('../model/bit-read-constructor.js');
 
 
 describe('test our bitconstructor', function() {
