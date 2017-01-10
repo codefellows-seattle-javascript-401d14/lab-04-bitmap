@@ -1,10 +1,8 @@
 'use strict';
-
 const expect = require('chai').expect;
 const bitReader = require('../lib/bitmapreader.js');
 
 
-//Test checking constructor and read modules
 describe('test our bitmapreader', function() {
   describe('testing with valid input', function() {
     let mockData = {
