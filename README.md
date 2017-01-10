@@ -8,9 +8,9 @@
   * Submit a pull request to this repository
   * Submit a link to your pull request on canvas
   * Submit a question, observation, and how long you spent on canvas  
-  
+
 ## Learning Objectives  
-* Students will be able to manipulate binary data using nodejs Buffers 
+* Students will be able to manipulate binary data using nodejs Buffers
 * Students will be able to architect modular solutions to solving problems
 
 ## Resources  
@@ -25,17 +25,17 @@ Your lab directory must include
 * **.gitignore** -- with a robust gitignore
 * **.eslintrc** -- with the class .eslintrc file
 * **.eslintignore** -- with the class .eslintignore
-* **.package.json** -- with all dependencies and dev-dependencies 
+* **.package.json** -- with all dependencies and dev-dependencies
 * **assets/** -- directory for holding image files
 * **test/** -- directory for holding unit and integration tests
 * **lib/** -- directory for holding program helper modules
 * **model/** -- directory for holding object constructor modules
 * **index.js** -- main CLI program
 
- 
+
 #### Feature Tasks  
 * Create a module **index.js** that will be used as a CLI for transforming bitmap images
- * Your CLI should take three arguments 
+ * Your CLI should take three arguments
     1. tranform name
     2. input file path
     3. output file path
@@ -51,7 +51,7 @@ Your lab directory must include
 
 ###### Here is a proposal for how your CLI might function   
 1. Open the bitmap file using fs module and read it into a buffer
-2. Use a `Bitmap` constructor to parse the buffer's "bitmap headers" 
+2. Use a `Bitmap` constructor to parse the buffer's "bitmap headers"
 3. Run a transform on the bitmap instance
 4. Convert the bitmap into a buffer
 5. Write the buffer into a new file
@@ -69,3 +69,9 @@ Your lab directory must include
 * 3pts Feature Tasks
 * 3pts Tests
 * 2pts Documentation
+
+
+##TODO
+* bitmap-writer test
+* bit-read-constructor test
+* index.js test
