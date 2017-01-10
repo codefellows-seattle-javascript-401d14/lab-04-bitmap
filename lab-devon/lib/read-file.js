@@ -6,7 +6,8 @@ const Bitmap = require('../model/bitmap-constructor.js');
 module.exports  = function(inputFile, callback){
   fs.readFile(inputFile, (err,data) => {
     if(err) return callback(err);
-    var result = new Bitmap(data);
+    let result = new Bitmap(data);
+    result.blackout();
     callback(null,result);
   });
 };
