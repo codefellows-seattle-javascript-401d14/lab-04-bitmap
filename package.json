@@ -1,0 +1,24 @@
+{
+  "name": "lab-04-bitmap",
+  "version": "1.0.0",
+  "description": "401 JS --  Lab 04 bitmap ===",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devonhackley/lab-04-bitmap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devonhackley/lab-04-bitmap/issues"
+  },
+  "homepage": "https://github.com/devonhackley/lab-04-bitmap#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
